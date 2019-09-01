@@ -1,0 +1,16 @@
+
+
+-name : latency alerts
+  paramter: latency 
+  threshold : 100ms
+  condition: greatherThan
+  action: log
+  file: '/var/log/1.log'
+  duration: 5m 
+-name : error alert 
+  parameter: error
+  condition: greaterThan
+  threshould: 5
+  action: email
+    - email: rajgourav.jain@gmail.com
+         

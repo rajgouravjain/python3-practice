@@ -1,0 +1,36 @@
+global:
+  #Duratioin is always in minutes
+  duration : 5
+rules:
+  app1:
+    - type : latency
+      measure: average
+      condition: greaterThan
+      #Duratioin is always in minutes
+      duration: 10
+      ##Latency accepts threshould in ms
+      threshold: 100
+
+    - type : latency
+      measure: maximum
+      condition: greaterThan
+      #Duratioin is always in minutes
+      duration: 10
+      threshold: 1000
+
+  app2:
+    - type : error_rate
+      measure: max
+      #Duratioin is always in minutes
+      duration: 10
+      condition: greaterThan
+      ##ErrorRate accepts threshold in count
+      threshold: 60
+
+  app3:
+    - type: throughput
+      measure: average
+      condition: lessThan
+      duration: 5
+      #Throughtput accepts threshold in bytes
+      threshold: 500000
