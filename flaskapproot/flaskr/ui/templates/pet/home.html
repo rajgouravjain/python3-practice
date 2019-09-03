@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Please register of Pet store !!</h1>
+<form  method="POST">
+  {{ form.hidden_tag() }}
+  {{ form.name.label }} {{form.name }}
+  {{form.breed.label }} {{ form.breed }}
+  {{form.submit()}}
+
+</form>
+
+{% endblock %}

@@ -5,8 +5,10 @@ from models.pets import Pet
 ns = Namespace('pets', description='Pets related operations')
 
 pet = ns.model('Pet', {
-    'id': fields.String(required=True, description='The pet identifier'),
+    'id': fields.String(description='The pet identifier'),
     'name': fields.String(required=True, description='The pet name'),
+    'breed': fields.String(required=True, description='The pet breed'),
+
 })
 
 #PETS = [
@@ -30,5 +32,6 @@ class PetResource(Resource):
     @ns.marshal_with(pet)
     def get(self, id):
         '''Fetch a pet given its identifier'''
-        cd
+        pet = Pet.query.filter_by(id=id).first()
+        return pet
         ns.abort(404)

@@ -4,14 +4,14 @@ import traceback
 import logging
 import settings
 from sqlalchemy.orm.exc import NoResultFound
-from apis.pet_ns import ns as ns1
+from apis.pet import ns as ns1
 
 
 logger = logging.getLogger(__name__)
 
 blueprint = Blueprint('api1', __name__, url_prefix='/api/1')
 api = Api(blueprint,
-    title='My Title',
+    title='Pet Store api v1',
     version='1.0',
     description='A description',
     # All API metadatas

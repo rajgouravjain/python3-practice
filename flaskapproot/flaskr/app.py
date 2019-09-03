@@ -1,15 +1,18 @@
 from flask import Flask
 from api1 import blueprint as api1
 from api2 import blueprint as api2
+from ui.owner import blueprint as owner
+from ui.pet import blueprint as pet
 from flask_migrate import Migrate
-from models import db
+from models import db, login_manager
 import settings
 import logging.config
 import os
 import os.path
 from flask_sqlalchemy import SQLAlchemy
-
-
+from flask_login import LoginManager
+from flask_jwt import JWT
+from security_check import authenticate,  identity
 
 flask_app = Flask(__name__)
 
@@ -38,14 +41,20 @@ def configure_app(flask_app):
     flask_app.config['SECRET_KEY'] = 'mysecretkey'
 def initialize_app(flask_app):
     configure_app(flask_app)
+    jwt = JWT(flask_app, authenticate, identity)
     flask_app.register_blueprint(api1)
     flask_app.register_blueprint(api2)
+    flask_app.register_blueprint(owner)
+    flask_app.register_blueprint(pet)
     db.init_app(flask_app)
+
+    login_manager.init_app(flask_app)
+    logger.info("Logger for flask initialized")
     #migrate = Migrate(app,db)
+
 
 
 Migrate(flask_app,db)
 if __name__ == '__main__':
     initialize_app(flask_app)
-
     flask_app.run(debug=True)

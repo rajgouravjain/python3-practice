@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+<p>Hi {{current_user.name }}</p>
+<p>Current users data : {{ current_user }}</p>
+{% else %}
+<p>Pleae login  or register! </p>
+{% endif %}
+
+{% endblock %}

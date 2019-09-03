@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Thank you for registration your Pet !!</h1>
+<h3> Your details are </h3>
+
+<ul>
+
+  <li>Name : {{ session['name']}} </li>
+  <li>Breed : {{ session['breed']}} </li>
+
+</ul>
+
+
+{% endblock %}

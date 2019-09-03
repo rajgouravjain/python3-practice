@@ -1,11 +1,13 @@
 from flask_restplus import Namespace, Resource, fields
 from models.owners import Owner
-
+from flask_jwt import jwt_required
 ns = Namespace('Owners', description='Owners related operations')
 
 owner = ns.model('Owner', {
-    'id': fields.String(required=True, description='The owner identifier'),
+    'id': fields.String(description='The owner identifier'),
     'name': fields.String(required=True, description='The owner name'),
+    'email': fields.String(required=True, description='The owner email'),
+
 })
 
 #OWNERS = [
@@ -16,6 +18,7 @@ owner = ns.model('Owner', {
 class OwnerListResource(Resource):
     @ns.doc('list_owners')
     @ns.marshal_list_with(owner)
+    #@jwt_required
     def get(self):
         '''List all owners'''
         OWNERS = Owner.query.all()
