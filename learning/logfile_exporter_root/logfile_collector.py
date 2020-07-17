@@ -14,12 +14,6 @@ class LogFileCollector(object):
    
   def collect(self):
     with open(self.filename,'r') as fp:
-      seek_eof = fp.seek(0, 2)
-      print("Seek EOF", seek_eof)
-      if seek_eof > self.N: 
-        pos = self.N + 1
-      else :
-        print("Lines in file is less than" + self.N )
       lines = []
       while len(lines) <= self.N: 
             try: 
